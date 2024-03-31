@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gluma cu telefonul hackuit</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #ff0000;
+            color: #ff6600; /* Portocaliu */
+            text-align: center;
+            padding-top: 100px;
+        }
+        h1, p {
+            color: #ff6600; /* Portocaliu */
+        }
+        .loader-container {
+            width: 100%;
+            height: 10px;
+            background-color: #ff6600; /* Portocaliu */
+            margin-top: 20px;
+            display: none;
+        }
+        .loader {
+            height: 100%;
+            background-color: #fff;
+        }
+        #loading-text {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div id="warning">
+        <h1>Atenție!</h1>
+        <p>Telefonul tău este hackuit!</p>
+        <p>Dispozitivul dumneavoastră este localizat...</p>
+        <div class="loader-container">
+            <div class="loader"></div>
+        </div>
+        <p id="loading-text">Încărcare...</p>
+    </div>
+    <div id="joke" style="display: none;">
+        <h1>Doar glumeam! 😄</h1>
+        <p>1 aprilie</p>
+    </div>
+
+    <script>
+        // Afiseaza mesajul de avertisment
+        document.getElementById("warning").style.display = "block";
+        
+        // Afiseaza bara de incarcare si textul de incarcare
+        var loaderContainer = document.querySelector(".loader-container");
+        var loader = document.querySelector(".loader");
+        var loadingText = document.getElementById("loading-text");
+        loaderContainer.style.display = "block";
+
+        // Simuleaza incarcarea
+        var progress = 0;
+        var interval = setInterval(function() {
+            progress += 1;
+            loader.style.width = progress + "%";
+            loadingText.textContent = "Încărcare... " + progress + "%";
+            if (progress >= 100) {
+                clearInterval(interval);
+                loaderContainer.style.display = "none";
+                setTimeout(function() {
+                    document.getElementById("joke").style.display = "block";
+                    document.getElementById("loading-text").textContent = "Am glumit!";
+                }, 15000); // Afișează mesajul după 15 de secunde
+            }
+        }, 150); // Timpul estimat pentru încărcare (15 secunde * 1000 / 100 = 150)
+    </script>
+</body>
+</html>
